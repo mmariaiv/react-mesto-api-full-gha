@@ -1,0 +1,9 @@
+.element__like-container {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	flex-direction: column;
+	gap: 3px;
+	justify-content: center;
+	align-items: center;
+}

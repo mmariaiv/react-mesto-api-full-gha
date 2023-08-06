@@ -1,0 +1,10 @@
+.auth__link {
+	all: unset;
+	cursor: pointer;
+	border-bottom: none;
+
+	color: #fff;
+	text-align: center;
+	font-size: 14px;
+	font-family: Inter;
+}
