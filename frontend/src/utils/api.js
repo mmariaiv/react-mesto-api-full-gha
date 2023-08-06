@@ -6,6 +6,7 @@ class Api {
 	getInitialCards() {
 		return fetch(this.options.baseUrl + "/cards", {
 			headers: this.options.headers,
+			
 		}).then((res) => {
 			return this._getResponseData(res);
 		});
@@ -14,6 +15,7 @@ class Api {
 	getUserInfo() {
 		return fetch(this.options.baseUrl + "/users/me", {
 			headers: this.options.headers,
+			
 		}).then((res) => {
 			return this._getResponseData(res);
 		});
@@ -22,6 +24,7 @@ class Api {
 	changeUserInfo(newUserInfo) {
 		return fetch(this.options.baseUrl + "/users/me", {
 			method: "PATCH",
+			
 			headers: this.options.headers,
 			body: JSON.stringify({
 				name: newUserInfo.name,
@@ -48,6 +51,7 @@ class Api {
 	deleteCard(cardID) {
 		return fetch(this.options.baseUrl + `/cards/${cardID}`, {
 			method: "DELETE",
+			
 			headers: this.options.headers,
 		}).then((res) => {
 			return this._getResponseData(res);
@@ -57,6 +61,7 @@ class Api {
 	changeAvatarPhoto(link) {
 		return fetch(this.options.baseUrl + `/users/me/avatar`, {
 			method: "PATCH",
+			
 			headers: this.options.headers,
 			body: JSON.stringify(link),
 		}).then((res) => {
@@ -67,6 +72,7 @@ class Api {
 	putLikeOnCard(cardId) {
 		return fetch(this.options.baseUrl + `/cards/${cardId}/likes`, {
 			method: "PUT",
+			
 			headers: this.options.headers,
 		}).then((res) => {
 			return this._getResponseData(res);
@@ -76,6 +82,7 @@ class Api {
 	deleteLikeOnCard(cardId) {
 		return fetch(this.options.baseUrl + `/cards/${cardId}/likes`, {
 			method: "DELETE",
+			
 			headers: this.options.headers,
 		}).then((res) => {
 			return this._getResponseData(res);
@@ -99,9 +106,9 @@ class Api {
 }
 
 export const api = new Api({
-	baseUrl: "https://nomoreparties.co/v1/cohort-65",
+	baseUrl: "http://localhost:4000",
 	headers: {
-		authorization: "4015b49d-701b-4ec8-8c45-a790a9db8072",
+		'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
 		"Content-Type": "application/json",
 	},
 });

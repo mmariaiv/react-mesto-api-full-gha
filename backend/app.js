@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { celebrate, Joi, errors } = require('celebrate');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -7,9 +8,11 @@ const auth = require('./middlewares/auth');
 const { createUser, login } = require('./controllers/user');
 const { regexLinkValidation } = require('./utils/constants');
 
-const { PORT = 3000, dbAddress = 'mongodb://localhost:27017/mestodb' } = process.env;
+const { PORT = 4000, dbAddress = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 const app = express();
+
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 mongoose.connect(dbAddress, {});
 

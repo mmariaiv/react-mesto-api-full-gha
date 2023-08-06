@@ -86,7 +86,7 @@ function App() {
 				.then((res) => {
 					if (res) {
 						setLoggedIn(true);
-						setAuthUserEmail(res.data.email);
+						setAuthUserEmail(res.email);
 
 						navigate("/main", { replace: true });
 					}
@@ -131,6 +131,7 @@ function App() {
 	}
 
 	function handleCardDelete(card) {
+		console.log(card, card._id, cards);
 		setIsLoadingState(true);
 		api
 			.deleteCard(card._id)
@@ -151,6 +152,7 @@ function App() {
 	}
 
 	function handleCardLike(card) {
+		console.log(card);
 		const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
 		api

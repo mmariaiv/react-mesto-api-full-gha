@@ -39,7 +39,8 @@ function Main(props) {
 			</section>
 
 			<section className="elements">
-				{props.cards.map((newCard) => {
+				{console.log(Array.from(props.cards.data))}
+				{Array.from(props.cards.data).map((newCard) => {
 					return (
 						<Card
 							key={newCard._id}

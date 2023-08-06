@@ -14,6 +14,7 @@ class Auth {
 		return fetch(this.options.baseUrl + `/signup`, {
 			method: "POST",
 			headers: this.options.headers,
+			
 			body: JSON.stringify({
 				password: password,
 				email: email,
@@ -27,6 +28,7 @@ class Auth {
 		return fetch(this.options.baseUrl + `/signin`, {
 			method: "POST",
 			headers: this.options.headers,
+			
 			body: JSON.stringify({
 				password: password,
 				email: email,
@@ -50,6 +52,7 @@ class Auth {
 		return fetch(this.options.baseUrl + `/users/me`, {
 			method: "GET",
 			headers: headers,
+			
 		})
 			.then((res) => {
 				return this._getResponseData(res);
@@ -61,8 +64,9 @@ class Auth {
 }
 
 export const authorizationApi = new Auth({
-	baseUrl: "https://auth.nomoreparties.co",
+	baseUrl: "http://localhost:4000",
 	headers: {
 		"Content-Type": "application/json",
 	},
+	
 });
