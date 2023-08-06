@@ -70,7 +70,9 @@ function App() {
 		api
 			.getInitialCards()
 			.then((initialCards) => {
-				setCards(initialCards);
+				const currentCardsList = Array.from(initialCards.data);
+				setCards(currentCardsList);
+				console.log(currentCardsList);
 			})
 			.catch((err) => {
 				console.log(err, "error in searching cards");
@@ -131,13 +133,12 @@ function App() {
 	}
 
 	function handleCardDelete(card) {
-		console.log(card, card._id, cards);
 		setIsLoadingState(true);
 		api
 			.deleteCard(card._id)
 			.then((res) => {
 				setCards((state) => {
-					return state.filter((c) => card._id !== c._id);
+					return cards.filter((c) => card._id !== c._id);
 				});
 			})
 			.then(() => {
@@ -152,15 +153,14 @@ function App() {
 	}
 
 	function handleCardLike(card) {
-		console.log(card);
 		const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
 		api
 			.changeLikeCardStatus(card._id, !isLiked)
 			.then((newCard) => {
-				setCards((state) =>
-					state.map((c) => (c._id === card._id ? newCard : c))
-				);
+				setCards((state) => {
+					return cards.map((c) => (c._id === card._id ? newCard : c))
+				});
 			})
 			.catch((err) => {
 				console.log(err, "error in cards setting");
@@ -218,7 +218,7 @@ function App() {
 		api
 			.addNewCard(newCardInfo)
 			.then((res) => {
-				setCards([res, ...cards]);
+				setCards([res.data, ...cards]);
 			})
 			.then(() => {
 				closeAllPopups();
@@ -230,6 +230,7 @@ function App() {
 				setIsLoadingState(false);
 			});
 	}
+	
 
 	function closeAllPopups() {
 		setIsEditProfilePopupOpen(false);

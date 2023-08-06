@@ -5,6 +5,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Main(props) {
 	const currentUser = React.useContext(CurrentUserContext);
+	// const currentCardsList = Array.from(props.cards.data);
 
 	return (
 		<main className="content">
@@ -39,8 +40,7 @@ function Main(props) {
 			</section>
 
 			<section className="elements">
-				{console.log(Array.from(props.cards.data))}
-				{Array.from(props.cards.data).map((newCard) => {
+				{ props.cards.map((newCard) => {
 					return (
 						<Card
 							key={newCard._id}
