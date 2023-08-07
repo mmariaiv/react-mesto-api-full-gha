@@ -1,0 +1,13 @@
+.profile__menu {
+	display: flex;
+	margin: 0;
+	gap: 30px;
+	align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+	.profile__menu {
+		flex-direction: column;
+		gap: 26px;
+	}
+}

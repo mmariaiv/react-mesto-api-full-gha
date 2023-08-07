@@ -1,0 +1,18 @@
+.profile__info {
+	display: grid;
+	row-gap: 7px;
+	column-gap: 18px;
+	grid-template-columns: repeat(2, max-content);
+	grid-template-rows: repeat(2, max-content);
+	grid-template-areas:
+		"name button"
+		"bio bio";
+}
+
+@media screen and (max-width: 767px) {
+	.profile__info {
+		row-gap: 7px;
+		column-gap: 10px;
+		justify-items: center;
+	}
+}

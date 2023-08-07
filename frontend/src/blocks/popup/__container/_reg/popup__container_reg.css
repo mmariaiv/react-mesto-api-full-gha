@@ -1,0 +1,12 @@
+.popup__container {
+	padding: 60px 0;
+	gap: 32px;
+}
+
+/* @media screen and (max-width: 767px) {
+	.popup__container {
+		max-width: calc(100% - 19px * 2);
+		margin: 0 auto;
+		padding: 25px 0 25px 0;
+	}
+} */

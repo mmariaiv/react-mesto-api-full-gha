@@ -1,0 +1,11 @@
+.header__container_mobile {
+	display: flex;
+
+	flex-direction: column;
+	margin: 0 auto;
+	margin-bottom: 27px;
+	border-bottom: 1px solid rgba(84, 84, 84, 0.6);
+	align-items: center;
+	width: 100%;
+	padding: 40px 0 40px 0;
+}
