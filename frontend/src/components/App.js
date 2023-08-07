@@ -49,9 +49,12 @@ function App() {
 	const navigate = useNavigate();
 
 	React.useEffect(() => {
+
 		if (!checkToken()) {
 			return;
 		}
+
+		api.options.headers['Authorization'] = `Bearer ${localStorage.getItem('jwt')}`;
 
 		api
 			.getUserInfo()
@@ -152,7 +155,7 @@ function App() {
 	}
 
 	function handleCardLike(card) {
-		const isLiked = card.likes.some((i) => i._id === currentUser._id);
+		const isLiked = card.likes.some((i) => i === currentUser._id);
 
 		api
 			.changeLikeCardStatus(card._id, !isLiked)

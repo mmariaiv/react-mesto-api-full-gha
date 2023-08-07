@@ -101,12 +101,12 @@ class Api {
 		}
 		return res.json();
 	}
+
 }
 
 export const api = new Api({
 	baseUrl: "http://localhost:4000",
 	headers: {
-		'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
 		"Content-Type": "application/json",
 	},
 });
