@@ -72,7 +72,6 @@ function App() {
 			.then((initialCards) => {
 				const currentCardsList = Array.from(initialCards.data);
 				setCards(currentCardsList);
-				console.log(currentCardsList);
 			})
 			.catch((err) => {
 				console.log(err, "error in searching cards");
@@ -157,10 +156,15 @@ function App() {
 
 		api
 			.changeLikeCardStatus(card._id, !isLiked)
-			.then((newCard) => {
-				setCards((state) => {
-					return cards.map((c) => (c._id === card._id ? newCard : c))
-				});
+			.then((newLikes) => {
+				setCards(() => {
+					return cards.map((c) => {
+						if (c._id === card._id) {
+							c.likes = newLikes.data;
+						}
+						return c;
+					})
+				})
 			})
 			.catch((err) => {
 				console.log(err, "error in cards setting");

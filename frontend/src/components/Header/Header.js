@@ -61,7 +61,7 @@ function Header(props) {
 				>
 					{props.loggedIn
 						? "Выйти"
-						: location.pathname == "/login"
+						: location.pathname === "/login"
 						? "Регистрация"
 						: "Войти"}
 				</button>

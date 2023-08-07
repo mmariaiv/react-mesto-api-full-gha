@@ -71,8 +71,7 @@ class Api {
 
 	putLikeOnCard(cardId) {
 		return fetch(this.options.baseUrl + `/cards/${cardId}/likes`, {
-			method: "PUT",
-			
+			method: "PUT",	
 			headers: this.options.headers,
 		}).then((res) => {
 			return this._getResponseData(res);
@@ -82,7 +81,6 @@ class Api {
 	deleteLikeOnCard(cardId) {
 		return fetch(this.options.baseUrl + `/cards/${cardId}/likes`, {
 			method: "DELETE",
-			
 			headers: this.options.headers,
 		}).then((res) => {
 			return this._getResponseData(res);
