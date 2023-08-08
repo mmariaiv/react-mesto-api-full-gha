@@ -64,7 +64,7 @@ class Auth {
 }
 
 export const authorizationApi = new Auth({
-	baseUrl: "http://localhost:4000",
+	baseUrl: "https://api.m.mmariaiv.nomoreparties.co",
 	headers: {
 		"Content-Type": "application/json",
 	},
