@@ -10,7 +10,7 @@ const { createUser, login } = require('./controllers/user');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { regexLinkValidation } = require('./utils/constants');
 
-const { PORT, DB_ADDRESS = 'mongodb://localhost:27017/mestodb' } = process.env;
+const { PORT = 3000, DB_ADDRESS = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 const app = express();
 
@@ -22,6 +22,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
@@ -47,7 +53,6 @@ app.use('/', routes);
 app.use(errorLogger);
 
 app.use(errors());
-console.log(errors);
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
