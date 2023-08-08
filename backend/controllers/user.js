@@ -110,10 +110,6 @@ module.exports.getUserById = (req, res, next) => {
 };
 
 module.exports.updateUserInfo = (req, res, next) => {
-  if (!req.body.name || !req.body.about) {
-    throw new ValidationError('Переданы неккоректные данные в методы обновления профиля пользователя');
-  }
-
   const newData = {};
 
   if (req.body.name) {
@@ -128,14 +124,16 @@ module.exports.updateUserInfo = (req, res, next) => {
     newData.about = about;
   }
 
-  User.findByIdAndUpdate(req.user._id, newData, { new: true })
+  User.findByIdAndUpdate(req.user._id, newData, { new: true, runValidators: true })
     .then((user) => {
       res.status(200).send({
         email: user.email, name: user.name, about: user.about, avatar: user.avatar, _id: user._id,
       });
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.name === 'ValidationError') {
+        next(new ValidationError('Переданы некорректные данные при смене информации о пользователе'));
+      } else if (err.name === 'CastError') {
         next(new ValidationError('Переданы неккоректные данные'));
       }
       next(err);
@@ -143,19 +141,18 @@ module.exports.updateUserInfo = (req, res, next) => {
 };
 
 module.exports.updateUserAvatar = (req, res, next) => {
-  if (!req.body.avatar) {
-    throw new ValidationError('Переданы неккоректные данные в методы обновления профиля пользователя');
-  }
   const { avatar } = req.body;
 
-  User.findByIdAndUpdate(req.user._id, { avatar }, { new: true })
+  User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
     .then((user) => {
       res.status(200).send({
         email: user.email, name: user.name, about: user.about, avatar: user.avatar, _id: user._id,
       });
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.name === 'ValidationError') {
+        next(new ValidationError('Переданы некорректные данные при смене аватара'));
+      } else if (err.name === 'CastError') {
         next(new ValidationError('Был передан неккоректный id'));
       } else {
         next(err);

@@ -76,7 +76,7 @@ module.exports.deleteCard = (req, res, next) => {
       Card.findByIdAndRemove(req.params.cardId)
         .then(() => {
           res.status(200).send({ data: 'Карточка успешно удалена' });
-        });
+        }).catch(next);
     } else {
       throw new ForbiddenAccessError('У вас нет прав на удаление данной карточки');
     }
