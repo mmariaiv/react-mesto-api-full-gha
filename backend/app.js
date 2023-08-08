@@ -10,7 +10,7 @@ const { createUser, login } = require('./controllers/user');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { regexLinkValidation } = require('./utils/constants');
 
-const { PORT, DB_ADDRESS } = process.env;
+const { PORT, DB_ADDRESS = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 const app = express();
 
