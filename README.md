@@ -14,8 +14,8 @@ https://github.com/mmariaiv/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP-адрес: 51.250.31.27
+IP-адрес 51.250.31.27
 
-Frontend: https://m.mmariaiv.nomoreparties.co
+Frontend https://m.mmariaiv.nomoreparties.co
 
-Backend: https://api.m.mmariaiv.nomoreparties.co
+Backend https://api.m.mmariaiv.nomoreparties.co
